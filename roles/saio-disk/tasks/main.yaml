@@ -21,5 +21,5 @@
     file:
       path: "{{ swift_disk['mount_point'] | default('/srv/node/disk') }}"
       # hardcoded uid/gid used in the published docker image
-      owner: 1000
-      group: 1000
+      owner: '1000'
+      group: '1000'
