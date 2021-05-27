@@ -1,0 +1,19 @@
+[Unit]
+Description=Docker Swift All In One
+After=docker.service
+Requires=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker stop %n
+ExecStartPre=-/usr/bin/docker rm %n
+ExecStart=/usr/bin/docker run --rm --name %n \
+ --env STORAGE_TYPE=externally_managed \
+ --env DEVICE_COUNT=1 \
+ --publish 8080:8080 \
+ --volume /dev/log:/dev/log \
+ --volume {{ swift_disk['mount_point'] | default('/srv/node/disk') }}:/srv/node/swift-d0:Z \
+ openstackswift/saio:latest
+
+[Install]
+WantedBy=multi-user.target

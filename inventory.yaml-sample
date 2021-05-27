@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    <some host>:
+      ansible_ssh_user: <user>
+      swift_disk:
+        id: <some name under /dev/disk/by-id/>
+        label: <a useful label>
+        mount_point: <some mountpoint; default is /srv/node/disk>

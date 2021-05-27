@@ -1,0 +1,23 @@
+---
+- become: true
+  block:
+  - name: Write service file
+    template:
+      dest: /etc/systemd/system/docker-swift-all-in-one.service
+      group: root
+      owner: root
+      mode: 0644
+      src: docker-swift-all-in-one.service.j2
+
+  - name: Open firewall port
+    ansible.posix.firewalld:
+      port: 8080/tcp
+      permanent: yes
+      state: enabled
+
+  - name: Start and enable service
+    systemd:
+      name: docker-swift-all-in-one.service
+      daemon-reload: true
+      state: started
+      enabled: true

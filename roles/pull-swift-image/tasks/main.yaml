@@ -1,0 +1,5 @@
+---
+- name: Pull the latest Swift image
+  community.docker.docker_image:
+    name: openstackswift/saio:latest
+    source: pull

@@ -1,0 +1,25 @@
+---
+- become: true
+  block:
+  - name: Create filesystem
+    filesystem:
+      fstype: xfs
+      dev: /dev/disk/by-id/{{ swift_disk["id"] }}
+      opts: -L {{ swift_disk["label"] }}
+
+  - name: Mount filesystem
+    mount:
+      name: "{{ swift_disk['mount_point'] | default('/srv/node/disk') }}"
+      src: LABEL={{ swift_disk["label"] }}
+      fstype: xfs
+      opts: "nofail,noatime,nodiratime,logbufs=8,group,noexec,nosuid,nodev"
+      dump: "0"
+      passno: "0"
+      state: mounted
+
+  - name: Set ownership
+    file:
+      path: "{{ swift_disk['mount_point'] | default('/srv/node/disk') }}"
+      # hardcoded uid/gid used in the published docker image
+      owner: 1000
+      group: 1000
