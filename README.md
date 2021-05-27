@@ -45,6 +45,10 @@ to be something that's actually useful.
 Parameterize the systemd service name to accomodate running multiple
 containers each with their own disk on the same host.
 
+Parameterize the tag to pull. Should make upgrade testing a bit easier.
+
+Get mount_check support, to play well with nuke-disk.
+
 Test against more platforms -- at least Ubuntu 20.04.
 
 Get on py3. Unfortunately, the published upstream py3 images are not currently
