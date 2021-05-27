@@ -29,6 +29,13 @@ To view Swift logs, try
 
 Yes, this is unfortunate and should be fixed upstream.
 
+Tear Down
+---------
+
+To destroy all data on the disk, try
+
+    $ ansible -i <your inventory> all -m include_role -a name=nuke-disk --ask-become-pass
+
 Future Work
 -----------
 

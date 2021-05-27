@@ -1,0 +1,10 @@
+---
+- become: true
+  block:
+  - name: Unmount filesystem
+    mount:
+      name: "{{ swift_disk['mount_point'] | default('/srv/node/disk') }}"
+      state: absent
+
+  - name: Destroy filesystem
+    raw: "dd if=/dev/zero bs=1M count=1 of=/dev/disk/by-id/{{ swift_disk['id'] | quote }}"
