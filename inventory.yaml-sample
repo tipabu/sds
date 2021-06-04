@@ -7,3 +7,4 @@ all:
         id: <some name under /dev/disk/by-id/>
         label: <a useful label>
         mount_point: <some mountpoint; default is /srv/node/disk>
+      swift_dockerhub_tag: <tag from https://hub.docker.com/r/openstackswift/saio/tags like "latest", "py3", "v2.25.0"; default is py3>

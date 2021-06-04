@@ -13,7 +13,7 @@ ExecStart=/usr/bin/docker run --rm --name %n \
  --publish 8080:8080 \
  --volume /dev/log:/dev/log \
  --volume {{ swift_disk['mount_point'] | default('/srv/node/disk') }}:/srv/node/swift-d0:Z \
- openstackswift/saio:py3
+ openstackswift/saio:{{ swift_dockerhub_tag | default('py3') }}
 
 [Install]
 WantedBy=multi-user.target
