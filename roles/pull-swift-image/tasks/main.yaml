@@ -1,5 +1,6 @@
 ---
 - name: Pull the latest Swift image
   community.docker.docker_image:
-    name: openstackswift/saio:latest
+    name: openstackswift/saio:py3
     source: pull
+    force_source: true
